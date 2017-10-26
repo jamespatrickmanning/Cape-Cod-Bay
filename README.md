@@ -1,2 +1,2 @@
 # Cape-Cod-Bay
-stickplot of wind
+stickplot of 2012-2014wind_temp
