@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed May 30 10:57:35 2018
-seperate dataset by drifter ids, save as (.csv)
+separate dataset by drifter ids, save as (.csv)
 @author: huimin
 """
 import csv
@@ -9,16 +9,17 @@ import numpy as np
 import pandas as pd
 
 
-#'drifters_cape_cod_bay.csv'     first ordered by id , then ordered by time
-drifters = np.genfromtxt('drifters_cape_cod_bay.csv',dtype=None,names=['ids','time','lat','lon','depth','temp'],delimiter=',',skip_header=1)
+#'drifters_cape_cod_bay.csv'     first ordered by id , then ordered by time extracted as "csvp" from ERDDAP website
 
+# find index of the first value of each drifter
 n=[]
 n.append(0)
 for a in np.arange(len(drifters['ids'])-1):
     if drifters['ids'][a]!=drifters['ids'][a+1]:
         n.append(a+1)
-n.append(len(drifters['ids']))
-f='julu.csv'
+n.append(len(drifters['ids']))## is this needed?
+
+f='julu.csv' # What is "julu"
 FList=[]
 file_path='''data/'''
 csvfile1 = file(f, 'wb')
@@ -39,7 +40,7 @@ for a in np.arange(len(n)-1):
     drifter_data.append(drift['lat'])
     drifter_data.append(drift['depth'])
     
-    dr=map(list, zip(*drifter_data))
+    dr=map(list, zip(*drifter_data))# is this needed?
     FN2=file_path+str(drifters['ids'][n[a]])+'.csv'
     writer1 = csv.writer(csvfile1)
     writer1.writerows([str(a)+'.csv'])
